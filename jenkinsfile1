@@ -1,6 +1,8 @@
-#1
+
 pipeline {
-     agent any
+     agent {
+label 'dev'
+}
      tools {
         maven 'maven3' 
         }
@@ -24,7 +26,7 @@ pipeline {
         stage("Deploy on Test"){
             steps{
                 // deploy on container -> plugin
-                deploy adapters: [tomcat9(credentialsId: 'tomcattest', path: '', url: 'http://3.25.81.12:8080')], contextPath: '/test', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.107.191.251:8080')], contextPath: '/test', war: '**/*.war'
               
             }
             
@@ -37,7 +39,7 @@ pipeline {
             
             steps{
                 // deploy on container -> plugin
-                deploy adapters: [tomcat9(credentialsId: 'tomcatprod', path: '', url: 'http://3.25.81.12:8080')], contextPath: '/prod', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.107.191.251:8080')], contextPath: '/prod', war: '**/*.war'
 
             }
         }
