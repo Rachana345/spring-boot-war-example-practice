@@ -1,5 +1,5 @@
 
-1pipeline {
+pipeline {
      agent {
 label 'dev'
 }
